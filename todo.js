@@ -23,10 +23,9 @@ const fetchTodos = () => {
 const logTodos = () => {
     console.log(arrayOfTodos)
 }
-
+let olElement = document.getElementById('todo-list')
 const populateTodos = () => {
   // console.log(arrayOfTodos[0].userId)
-  const olElement = document.getElementById('todo-list')
   for (let index = 0; index < arrayOfTodos.length; index++) {
     const todo = arrayOfTodos[index]
     const addLi = document.createElement('li')
@@ -34,4 +33,29 @@ const populateTodos = () => {
     addLi.appendChild(newText)
     olElement.appendChild(addLi)
   }
+}
+
+const filterTodos = () => {
+  olElement.innerHTML = null
+  // const getUserID = document.getElementById('userIDnumber').value
+  let getUserID = document.getElementById('userIDnumber').value
+  const filteredTodos = arrayOfTodos.filter(todo => {
+    todo.userId
+    if (parseInt(getUserID) === todo.userId) {
+      return todo
+    }
+  })
+  for (let index = 0; index < filteredTodos.length; index++) {
+    const todo = filteredTodos[index]
+    const addLi = document.createElement('li')
+    const newText = document.createTextNode(todo.title)
+    addLi.setAttribute('type', 'checbox')
+    document.body.appendChild(addLi)
+    addLi.appendChild(newText)
+    olElement.appendChild(addLi)
+  }
+
+
+  
+  console.log('filterTodos:', filteredTodos)
 }
